@@ -10,6 +10,10 @@ import org.springframework.context.annotation.Profile;
 import com.aprendendoJava.curso.entities.User;
 import com.aprendendoJava.curso.repositories.UserRepository;
 
+/*
+ * Essa classe será utilizada para realizar
+ * o teste de atualização dos dados no BD
+ */
 @Configuration
 @Profile("test")
 public class TestConfi implements CommandLineRunner {
