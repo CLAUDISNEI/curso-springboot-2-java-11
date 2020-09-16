@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /*
  * com essa anotação @Entity o jpa entende
  * que serão criadas tabelas no bd
@@ -48,6 +50,7 @@ public class User implements Serializable{
 	 * atraves de mappeadBy e o nome do atributo da
 	 * outra classe
 	 */
+	@JsonIgnore
 	@OneToMany(mappedBy = "client")
 	private List<Order> orders = new ArrayList<>();
 	

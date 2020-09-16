@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.aprendendoJava.curso.entities.User;
-import com.aprendendoJava.curso.repositories.UserRepository;
+import com.aprendendoJava.curso.entities.Order;
+import com.aprendendoJava.curso.repositories.OrderRepository;
 
 /*
  * A notação @Service serve para informar que essa classe
@@ -15,7 +15,7 @@ import com.aprendendoJava.curso.repositories.UserRepository;
  * dela
  */
 @Service
-public class UserService {
+public class OrderService {
 	
 	/*@Autowired - essa notação cria uma
 	 *  injeção de dependencia. 
@@ -23,26 +23,26 @@ public class UserService {
 	 * um objeto do tipo UsrRepository 
 	 */
 	@Autowired
-	private UserRepository repository;
+	private OrderRepository repository;
 	
 	/*
 	 * Um metodo que retorna todos os
 	 * usuarios do banco de dados
 	 */
-	public List<User> encontreTodos(){
+	public List<Order> encontreTodos(){
 		return repository.findAll();
 	}
 	
 	/*
 	 * Metodo utilizado para retornar o usuário pelo id
 	 */
-	public User encontrarPorId(Long id) {
+	public Order encontrarPorId(Long Id) {
 		/*
 		 * O tipo Optional recebe um objeto qualquer 
 		 * e caso a busca não retorne resultado o valor
 		 * automaticamente será nulo
 		 */
-		Optional<User> obj = repository.findById(id);
+		Optional<Order> obj = repository.findById(Id);
 		/*
 		 * a operação get do Optional irá retornar o obj
 		 * localizado pelo metodo findById

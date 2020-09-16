@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
+
 //informa que a classe será uma tabela no BD
 @Entity
 @Table(name = "tb_order" )
@@ -29,8 +32,12 @@ public class Order implements Serializable{
 	 * através do anotation @ManyToOne
 	 * A anotation @JoinColumn serve para informar a 
 	 * chave estrangeira da tabela Order. que será 
-	 * o id do cliente
+	 * o id do cliente. Foi adicionado também
+	 * o anotation @JsonIgnore para não ocorrer
+	 * erro de loop infinito entre as associações das 
+	 * duas classes
 	 */
+    //@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private User client;
@@ -53,6 +60,12 @@ public class Order implements Serializable{
 		this.id = id;
 	}
 
+	/*
+	 * Anotation utilizada para garantir que
+	 * o instante irá aparecer no formato ISO 8601
+	 * utilizando ainda o formato UTC 
+	 */
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT" )
 	public Instant getMoment() {
 		return moment;
 	}
