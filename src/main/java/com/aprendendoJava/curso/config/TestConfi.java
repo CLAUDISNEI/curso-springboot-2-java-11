@@ -8,9 +8,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.aprendendoJava.curso.entities.Category;
 import com.aprendendoJava.curso.entities.Order;
 import com.aprendendoJava.curso.entities.User;
 import com.aprendendoJava.curso.entities.enums.OrderStatus;
+import com.aprendendoJava.curso.repositories.CategoryRepository;
 import com.aprendendoJava.curso.repositories.OrderRepository;
 import com.aprendendoJava.curso.repositories.UserRepository;
 
@@ -27,6 +29,8 @@ public class TestConfi implements CommandLineRunner {
 	
 	@Autowired
 	private OrderRepository orderRepository;
+	@Autowired
+	private CategoryRepository categoryRepository;
 	
 	/*
 	 * fazendo o seed da tabela Order para 
@@ -43,6 +47,13 @@ public class TestConfi implements CommandLineRunner {
 		Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITTING_PAYMENT , u2);
 		Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITTING_PAYMENT , u1);
 		
+		//criando algumas categorias
+		Category cat1 = new Category(null, "Computers");
+		Category cat2 = new Category(null, "Music");
+		Category cat3 = new Category(null, "Food");
+		Category cat4 = new Category(null, "Cars");
+		
+		categoryRepository.saveAll(Arrays.asList(cat1,cat2,cat3,cat4));
 		userRepository.saveAll(Arrays.asList(u1,u2));
 		orderRepository.saveAll(Arrays.asList(o1,o2,o3));
 		
