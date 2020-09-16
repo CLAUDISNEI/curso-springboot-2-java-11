@@ -12,8 +12,9 @@ import com.aprendendoJava.curso.entities.User;
 public class UserResource {
 	
 	@GetMapping
-	public ResponseEntity<User> findAll() {
-		User u = new User(1L, "Maria", "maria@gmail.com", "99999", "12334");
+	public ResponseEntity<User> encontrarTodos() {
+		
+		User u = new User(2L, "João", "joao@gmail.com", "555", "5432");
 
 		return ResponseEntity.ok().body(u);
 	}
