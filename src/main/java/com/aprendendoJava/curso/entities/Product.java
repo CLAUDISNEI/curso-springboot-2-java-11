@@ -8,8 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_product")
@@ -29,9 +34,13 @@ public class Product implements Serializable {
 	 * os produtos possuem várias categorias. Usamos o set porque ele representa um
 	 * conjunto e para garantir que um produto não tenha mais de uma ocorrência da
 	 * mesma categoria E instanciamos para que a categoria não comece nula e sim
-	 * vazia.
+	 * vazia. Será também criado uma tabela de associçao entre a tabela produto e
+	 * categorias no comando @JoinTable que recebe o nome da tabela que será criada e os parâmetros de chave primaria
+	 * e chave extrangeira, repectivamente joinColums = @JoinColumn x inverseJoinColumns = @JoinColumn
 	 */
-	@Transient
+
+	@ManyToMany
+	@JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private Set<Category> categories = new HashSet<>();
 
 	public Product() {

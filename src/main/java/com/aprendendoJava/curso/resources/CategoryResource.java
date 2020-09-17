@@ -17,7 +17,7 @@ import com.aprendendoJava.curso.services.CategoryService;
  * 
  */
 @RestController
-@RequestMapping(value = "/category")
+@RequestMapping(value = "/categories")
 public class CategoryResource {
 	/*
 	 * cria uma dependência de Categoryservice, ou serja o CategoryResouce
