@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.aprendendoJava.curso.entities.Category;
 import com.aprendendoJava.curso.entities.Order;
+import com.aprendendoJava.curso.entities.OrderItem;
 import com.aprendendoJava.curso.entities.Product;
 import com.aprendendoJava.curso.entities.User;
 import com.aprendendoJava.curso.entities.enums.OrderStatus;
 import com.aprendendoJava.curso.repositories.CategoryRepository;
+import com.aprendendoJava.curso.repositories.OrderItemRepository;
 import com.aprendendoJava.curso.repositories.OrderRepository;
 import com.aprendendoJava.curso.repositories.ProductRepository;
 import com.aprendendoJava.curso.repositories.UserRepository;
@@ -35,6 +37,8 @@ public class TestConfi implements CommandLineRunner {
 	private CategoryRepository categoryRepository;
 	@Autowired
 	private ProductRepository productRepository;
+	@Autowired
+	private OrderItemRepository orderItemRepository;
 	
 	/*
 	 * fazendo o seed da tabela Order para 
@@ -77,6 +81,12 @@ public class TestConfi implements CommandLineRunner {
 		
 		productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
 		
+		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+		
+		orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
 	}
 	
 }

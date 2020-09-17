@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import com.aprendendoJava.curso.entities.pk.OrderItemPK;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_order_item")
@@ -21,7 +22,8 @@ public class OrderItem implements Serializable{
 	 * composta
 	 */
 	@EmbeddedId
-	private OrderItemPK id;
+	private OrderItemPK id = new OrderItemPK();
+	
 	private Integer quantity;
 	private Double price;
 	
@@ -41,7 +43,11 @@ public class OrderItem implements Serializable{
 		this.quantity = quantity;
 		this.price = price;
 	}
-	
+	/*
+	 * Utilizamos esta notação para que não ocorra loop
+	 * infinito entre o pedido e o itemdo pedito
+	 */
+	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();
 	}
