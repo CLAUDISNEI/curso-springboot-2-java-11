@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.aprendendoJava.curso.entities.Category;
 import com.aprendendoJava.curso.entities.Order;
+import com.aprendendoJava.curso.entities.Product;
 import com.aprendendoJava.curso.entities.User;
 import com.aprendendoJava.curso.entities.enums.OrderStatus;
 import com.aprendendoJava.curso.repositories.CategoryRepository;
 import com.aprendendoJava.curso.repositories.OrderRepository;
+import com.aprendendoJava.curso.repositories.ProductRepository;
 import com.aprendendoJava.curso.repositories.UserRepository;
 
 /*
@@ -31,6 +33,8 @@ public class TestConfi implements CommandLineRunner {
 	private OrderRepository orderRepository;
 	@Autowired
 	private CategoryRepository categoryRepository;
+	@Autowired
+	private ProductRepository productRepository;
 	
 	/*
 	 * fazendo o seed da tabela Order para 
@@ -48,14 +52,21 @@ public class TestConfi implements CommandLineRunner {
 		Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WAITTING_PAYMENT , u1);
 		
 		//criando algumas categorias
-		Category cat1 = new Category(null, "Computers");
-		Category cat2 = new Category(null, "Music");
-		Category cat3 = new Category(null, "Food");
-		Category cat4 = new Category(null, "Cars");
+		Category cat1 = new Category(null, "Eletronics");
+		Category cat2 = new Category(null, "Books");
+		Category cat3 = new Category(null, "Computers");
 		
-		categoryRepository.saveAll(Arrays.asList(cat1,cat2,cat3,cat4));
+		//criando repositorio de produtos
+		Product p1 = new Product(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+		Product p2 = new Product(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+		Product p3 = new Product(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+		Product p4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+		Product p5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+
+		categoryRepository.saveAll(Arrays.asList(cat1,cat2,cat3));
 		userRepository.saveAll(Arrays.asList(u1,u2));
 		orderRepository.saveAll(Arrays.asList(o1,o2,o3));
+		productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
 		
 	}
 	
